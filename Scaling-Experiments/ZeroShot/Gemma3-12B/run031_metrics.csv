@@ -1,0 +1,4 @@
+run_id,model,method,task,metric_dimension,aug,think,strict_f1,strict_acc,lenient_f1,lenient_acc,n_total_rows,n_scored_rows,n_unknown,unknown_rate,unknown_row_indices,prediction_file,timestamp
+031,Gemma3-12B,Zero-shot,MI,MI,None,N/A,0.558241,0.611524,0.776148,0.879182,538,538,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/Scaling-Experiments/ZeroShot/Gemma3-12B/run031_mi_predictions.csv,2026-04-21T18:55:39
+031,Gemma3-12B,Zero-shot,MI,MI,None,N/A,0.558241,0.611524,0.776148,0.879182,538,538,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/Scaling-Experiments/ZeroShot/Gemma3-12B/run031_mi_predictions.csv,2026-04-22T16:40:27
+031,Gemma3-12B,Zero-shot,MI,MI,None,N/A,0.558241,0.611524,0.776148,0.879182,538,538,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/Scaling-Experiments/ZeroShot/Gemma3-12B/run031_mi_predictions.csv,2026-04-22T17:23:05

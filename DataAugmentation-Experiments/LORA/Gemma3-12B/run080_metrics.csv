@@ -1,0 +1,5 @@
+run_id,model,method,task,metric_dimension,aug,think,strict_f1,strict_acc,lenient_f1,lenient_acc,n_total_rows,n_scored_rows,n_unknown,unknown_rate,unknown_row_indices,prediction_file,timestamp
+080,Gemma3-12B,LoRA,MT,MI,Qwen3-Gen,N/A,0.572159,0.825911,0.847947,0.91498,494,494,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/DataAugmentation-Experiments/LORA/Gemma3-12B/run080_mt.csv,2026-05-08T01:02:46
+080,Gemma3-12B,LoRA,MT,ML,Qwen3-Gen,N/A,0.510665,0.742915,0.779272,0.834008,494,494,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/DataAugmentation-Experiments/LORA/Gemma3-12B/run080_mt.csv,2026-05-08T01:02:46
+080,Gemma3-12B,LoRA,MT,PG,Qwen3-Gen,N/A,0.491966,0.67004,0.75493,0.831984,494,494,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/DataAugmentation-Experiments/LORA/Gemma3-12B/run080_mt.csv,2026-05-08T01:02:46
+080,Gemma3-12B,LoRA,MT,Act,Qwen3-Gen,N/A,0.600174,0.748988,0.879388,0.888664,494,494,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/DataAugmentation-Experiments/LORA/Gemma3-12B/run080_mt.csv,2026-05-08T01:02:46

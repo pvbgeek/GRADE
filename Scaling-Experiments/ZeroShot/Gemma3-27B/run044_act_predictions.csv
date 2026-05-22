@@ -1,0 +1,507 @@
+pred_label,raw_output
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,"Evaluation: To some extent
+
+
+
+**Reasoning:**
+
+The tutor points out an error in the student's logic (""an important detail about the distance traveled"") and asks a guiding question (""can you think about how many times the rancher needs to drive the 60-mile route?""). This *hints*"
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+No,Evaluation: No
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+No,Evaluation: No
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+No,Evaluation: No
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+Yes,Evaluation: Yes
+No,Evaluation: No
+Yes,Evaluation: Yes
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+No,Evaluation: No
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,Evaluation: To some extent
+Yes,Evaluation: Yes
+To some extent,Evaluation: To some extent
+To some extent,"Evaluation: To some extent
+
+
+
+**Reasoning:**
+
+The tutor identifies a misunderstanding in the student's initial calculation of shoplifters. However, while it points out the error, it doesn't *fully* guide the student to the correct calculation. It tells the student *what* to find (""the"

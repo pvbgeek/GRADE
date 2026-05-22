@@ -1,0 +1,355 @@
+#!/usr/bin/env python3
+"""Train a Mistral-7B LoRA adapter for TutorMind.
+
+Purpose
+-------
+Fine-tune a task-specific LoRA adapter for MI, ML, PG, Act, or MT using the
+TutorMind chat-format training JSONL and the prompt registry.
+
+Output
+------
+- One task-specific adapter directory under ``--adapter-out`` / ``<task>``.
+- A ``train_manifest.json`` file saved alongside the adapter.
+
+Example
+-------
+    python '/WAVE/projects/CSEN-346-Sp26/Group3/TutorMind/Scaling Experiments/LORA/Mistral-7B/train_mistral_lora.py' \\
+      --task MI \\
+      --train-jsonl '/WAVE/projects/CSEN-346-Sp26/Group3/TutorMind/data/train/mistake_identification_train.jsonl' \\
+      --adapter-out '/WAVE/projects/CSEN-346-Sp26/Group3/TutorMind/Scaling Experiments/LORA/Mistral-7B/adapters'
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from datetime import datetime
+from pathlib import Path
+from typing import List
+
+import torch
+from datasets import Dataset
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+    PreTrainedTokenizerFast,
+    set_seed,
+)
+from trl import SFTConfig, SFTTrainer
+
+
+MODEL_NAME = "Mistral-7B"
+BASE_MODEL_PATH = "/WAVE/datasets/oignat_lab/Mistral"
+PROMPTS_JSON = "/WAVE/projects/CSEN-346-Sp26/Group3/TutorMind/prompts.json"
+SINGLE_TASKS = ["MI", "ML", "PG", "Act"]
+ALL_TASKS = SINGLE_TASKS + ["MT"]
+METHOD = "LoRA"
+AUG = "None"
+THINK = "N/A"
+
+SINGLE_TASK_PROMPT_KEYS = {
+    "MI": "Mistake_Identification",
+    "ML": "Mistake_Location",
+    "PG": "Providing_Guidance",
+    "Act": "Actionability",
+}
+
+
+def build_parser() -> argparse.ArgumentParser:
+    """Create the CLI parser."""
+    parser = argparse.ArgumentParser(
+        description="Train a Mistral-7B LoRA adapter for a TutorMind task."
+    )
+    parser.add_argument("--task", required=True, choices=ALL_TASKS)
+    parser.add_argument("--train-jsonl", required=True)
+    parser.add_argument("--adapter-out", required=True)
+    parser.add_argument("--epochs", type=float, default=3)
+    parser.add_argument("--learning-rate", type=float, default=2e-4)
+    parser.add_argument("--batch-size", type=int, default=4)
+    parser.add_argument("--grad-accum", type=int, default=4)
+    parser.add_argument("--max-seq-length", type=int, default=2048)
+    parser.add_argument("--seed", type=int, default=42)
+    return parser
+
+
+def ensure_existing_file(path_str: str, arg_name: str) -> Path:
+    """Resolve a required file path and ensure it exists."""
+    path = Path(path_str)
+    if not path.is_file():
+        raise ValueError(f"{arg_name} does not exist or is not a file: {path}")
+    return path.resolve()
+
+
+def validate_args(args: argparse.Namespace) -> None:
+    """Reject obviously invalid training settings early."""
+    if args.epochs <= 0:
+        raise ValueError("--epochs must be greater than zero.")
+    if args.learning_rate <= 0:
+        raise ValueError("--learning-rate must be greater than zero.")
+    if args.batch_size <= 0:
+        raise ValueError("--batch-size must be greater than zero.")
+    if args.grad_accum <= 0:
+        raise ValueError("--grad-accum must be greater than zero.")
+    if args.max_seq_length <= 0:
+        raise ValueError("--max-seq-length must be greater than zero.")
+
+
+def load_json(path: Path) -> dict:
+    """Load a JSON file from disk."""
+    with path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def get_special_token_content(value: object, default: str | None = None) -> str | None:
+    """Extract a tokenizer special token string from HF config metadata."""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        content = value.get("content")
+        if isinstance(content, str):
+            return content
+    return default
+
+
+def load_tokenizer(model_path: str) -> AutoTokenizer | PreTrainedTokenizerFast:
+    """Load the Mistral tokenizer, with a fallback for local tokenizer metadata."""
+    try:
+        return AutoTokenizer.from_pretrained(model_path)
+    except (AttributeError, TypeError, ValueError):
+        base_model_path = Path(model_path)
+        tokenizer_config = load_json(base_model_path / "tokenizer_config.json")
+        tokenizer = PreTrainedTokenizerFast(
+            tokenizer_file=str(base_model_path / "tokenizer.json"),
+            bos_token=get_special_token_content(tokenizer_config.get("bos_token"), "<s>"),
+            eos_token=get_special_token_content(tokenizer_config.get("eos_token"), "</s>"),
+            unk_token=get_special_token_content(tokenizer_config.get("unk_token"), "<unk>"),
+            pad_token=get_special_token_content(tokenizer_config.get("pad_token"), "<pad>"),
+        )
+        tokenizer.chat_template = tokenizer_config.get("chat_template")
+        return tokenizer
+
+
+def should_use_bf16() -> bool:
+    """Enable bf16 only when CUDA bf16 support is actually available."""
+    return bool(
+        torch.cuda.is_available()
+        and hasattr(torch.cuda, "is_bf16_supported")
+        and torch.cuda.is_bf16_supported()
+    )
+
+
+def load_jsonl_records(path: Path) -> List[dict]:
+    """Load JSONL records from disk."""
+    records: List[dict] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, start=1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                records.append(json.loads(line))
+            except json.JSONDecodeError as exc:
+                raise ValueError(f"Invalid JSON on line {line_number} of {path}: {exc}") from exc
+    return records
+
+
+def select_prompt(prompts: dict, task: str) -> str:
+    """Select the configured training prompt for the requested task."""
+    if task == "MT":
+        prompt = prompts["multitask_training"]["prompt"]
+    else:
+        prompt_key = SINGLE_TASK_PROMPT_KEYS[task]
+        prompt = prompts["single_task_training"]["prompts"][prompt_key]
+
+    if not isinstance(prompt, str) or not prompt.strip():
+        raise ValueError(f"Prompt registry did not contain a usable prompt for task {task}.")
+    return prompt
+
+
+def extract_last_role_content(
+    record: dict, role: str, source_path: Path, row_index: int
+) -> str:
+    """Return the final message content for a role in a TutorMind chat example."""
+    messages = record.get("messages")
+    if not isinstance(messages, list):
+        raise ValueError(
+            f"{source_path} row {row_index} is missing a valid 'messages' list."
+        )
+
+    for message in reversed(messages):
+        if isinstance(message, dict) and message.get("role") == role:
+            content = message.get("content")
+            if not isinstance(content, str) or not content.strip():
+                raise ValueError(
+                    f"{source_path} row {row_index} has a non-string or empty {role} content."
+                )
+            return content
+
+    raise ValueError(f"{source_path} row {row_index} has no {role} message.")
+
+
+def build_training_messages(
+    record: dict, prompt: str, source_path: Path, row_index: int
+) -> List[dict]:
+    """Build training-time chat messages using the prompt registry as source of truth."""
+    user_content = extract_last_role_content(record, "user", source_path, row_index)
+    assistant_content = extract_last_role_content(record, "assistant", source_path, row_index)
+    return [
+        {"role": "system", "content": prompt},
+        {"role": "user", "content": user_content},
+        {"role": "assistant", "content": assistant_content},
+    ]
+
+
+def build_training_dataset(
+    tokenizer: AutoTokenizer,
+    train_path: Path,
+    prompt: str,
+) -> Dataset:
+    """Convert TutorMind JSONL examples into chat-rendered SFT text rows."""
+    rows = load_jsonl_records(train_path)
+    formatted_rows = []
+    for row_index, record in enumerate(rows):
+        messages = build_training_messages(record, prompt, train_path, row_index)
+        formatted_rows.append(
+            {
+                "text": tokenizer.apply_chat_template(
+                    messages,
+                    tokenize=False,
+                    add_generation_prompt=False,
+                )
+            }
+        )
+    return Dataset.from_list(formatted_rows)
+
+
+def resolve_adapter_dir(adapter_out: str, task: str) -> Path:
+    """Resolve the task-specific adapter directory for the run."""
+    return Path(adapter_out).resolve() / task
+
+
+def build_manifest(args: argparse.Namespace, train_jsonl: Path, adapter_dir: Path) -> dict:
+    """Build the saved training manifest for the adapter."""
+    return {
+        "model": MODEL_NAME,
+        "base_model_path": BASE_MODEL_PATH,
+        "method": METHOD,
+        "task": args.task,
+        "aug": AUG,
+        "think": THINK,
+        "train_jsonl": str(train_jsonl),
+        "adapter_out": str(adapter_dir),
+        "epochs": args.epochs,
+        "learning_rate": args.learning_rate,
+        "batch_size": args.batch_size,
+        "grad_accum": args.grad_accum,
+        "max_seq_length": args.max_seq_length,
+        "seed": args.seed,
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+    }
+
+
+def save_manifest(path: Path, manifest: dict) -> None:
+    """Write the training manifest to disk."""
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(manifest, handle, indent=2)
+
+
+def main() -> None:
+    """Train a LoRA adapter and save its manifest."""
+    parser = build_parser()
+    args = parser.parse_args()
+
+    try:
+        validate_args(args)
+        train_jsonl = ensure_existing_file(args.train_jsonl, "--train-jsonl")
+        prompts_path = ensure_existing_file(PROMPTS_JSON, "PROMPTS_JSON")
+        adapter_dir = resolve_adapter_dir(args.adapter_out, args.task)
+        adapter_dir.mkdir(parents=True, exist_ok=True)
+
+        set_seed(args.seed)
+        prompts = load_json(prompts_path)
+        prompt = select_prompt(prompts, args.task)
+
+        tokenizer = load_tokenizer(BASE_MODEL_PATH)
+        if tokenizer.pad_token_id is None:
+            tokenizer.pad_token = tokenizer.eos_token
+        # Keep the training path unchanged; SFTTrainer currently expects the
+        # existing right-padding setup for this dataset preparation flow.
+        tokenizer.padding_side = "right"
+
+        train_dataset = build_training_dataset(tokenizer, train_jsonl, prompt)
+
+        quantization_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.bfloat16,
+            bnb_4bit_use_double_quant=True,
+        )
+        base_model = AutoModelForCausalLM.from_pretrained(
+            BASE_MODEL_PATH,
+            quantization_config=quantization_config,
+            device_map="auto",
+            torch_dtype=torch.bfloat16,
+        )
+        base_model = prepare_model_for_kbit_training(base_model)
+
+        lora_config = LoraConfig(
+            r=16,
+            lora_alpha=32,
+            lora_dropout=0.05,
+            bias="none",
+            task_type="CAUSAL_LM",
+            target_modules=[
+                "q_proj",
+                "k_proj",
+                "v_proj",
+                "o_proj",
+                "gate_proj",
+                "up_proj",
+                "down_proj",
+            ],
+        )
+        model = get_peft_model(base_model, lora_config)
+        model.print_trainable_parameters()
+
+        training_args = SFTConfig(
+            output_dir=str(adapter_dir),
+            num_train_epochs=args.epochs,
+            per_device_train_batch_size=args.batch_size,
+            gradient_accumulation_steps=args.grad_accum,
+            learning_rate=args.learning_rate,
+            max_length=args.max_seq_length,
+            packing=False,
+            bf16=should_use_bf16(),
+            save_strategy="epoch",
+            save_total_limit=1,
+            logging_steps=10,
+            report_to="none",
+            seed=args.seed,
+            gradient_checkpointing=True,
+            gradient_checkpointing_kwargs={"use_reentrant": False},
+        )
+
+        trainer = SFTTrainer(
+            model=model,
+            args=training_args,
+            train_dataset=train_dataset,
+            processing_class=tokenizer,
+        )
+        trainer.train()
+        trainer.save_model(str(adapter_dir))
+        tokenizer.save_pretrained(str(adapter_dir))
+
+        manifest = build_manifest(args, train_jsonl, adapter_dir)
+        save_manifest(adapter_dir / "train_manifest.json", manifest)
+        print(f"Saved Mistral-7B LoRA adapter for task {args.task} to {adapter_dir}")
+
+    except ValueError as exc:
+        parser.exit(status=2, message=f"Error: {exc}\n")
+
+
+if __name__ == "__main__":
+    main()

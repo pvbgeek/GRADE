@@ -1,0 +1,2 @@
+run_id,model,method,task,metric_dimension,aug,think,strict_f1,strict_acc,lenient_f1,lenient_acc,n_total_rows,n_scored_rows,n_unknown,unknown_rate,unknown_row_indices,prediction_file,timestamp
+107,Gemma3-27B,LoRA,ML,ML,Qwen3-Gen+Verify,N/A,0.506677,0.742915,0.784593,0.817814,494,494,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/DataAugmentation-Experiments/LORA/Gemma3-27B/run107_ml.csv,2026-05-08T19:19:37

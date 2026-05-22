@@ -1,0 +1,2 @@
+run_id,model,method,task,metric_dimension,aug,think,strict_f1,strict_acc,lenient_f1,lenient_acc,n_total_rows,n_scored_rows,n_unknown,unknown_rate,unknown_row_indices,prediction_file,timestamp
+042,Gemma3-27B,Zero-shot,ML,ML,None,N/A,0.462004,0.532389,0.664506,0.769231,494,494,0,0.0,,/WAVE/projects2/CSEN-346-Sp26/Group3/TutorMind/Scaling-Experiments/ZeroShot/Gemma3-27B/run042_ml_predictions.csv,2026-04-29T21:41:20
