@@ -1,7 +1,7 @@
-# TutorMind — LLM Tutor Response Evaluation
+# GRADE — Generalizable Reasoning-Aware Dialogue Evaluation for AI Tutors
 
-**Authors:** Parth Bhalerao, Jeromy Chang, David Chou
-**Affiliation:** Santa Clara University — CSEN-346, Spring 2026
+<!--**Authors:** Parth Bhalerao, Jeromy Chang, David Chou
+**Affiliation:** Santa Clara University — CSEN-346, Spring 2026-->
 
 Fine-tuning and evaluation pipeline for assessing how well LLMs perform as **math tutors**, built around the BEA 2025 shared task on pedagogical ability assessment. Each (conversation, tutor-response) pair is rated on four dimensions:
 
@@ -12,7 +12,7 @@ Fine-tuning and evaluation pipeline for assessing how well LLMs perform as **mat
 
 Labels are 3-way: `Yes` / `No` / `To some extent`. We additionally train a **Multitask (MT)** head that predicts all four jointly.
 
-This repo covers data preparation, prompt construction, zero-shot inference, LoRA fine-tuning, augmented-data generation (Gen and Gen+Verify), chain-of-thought variants, model scaling, evaluation, and carbon-emissions tracking across Llama-3.1-8B, Mistral-7B, Qwen3-14B, Gemma3-12B, and Gemma3-27B.
+This repo covers data preparation, prompt construction, zero-shot inference, LoRA fine-tuning, augmented-data generation (Gen and Gen+Verify), chain-of-thought reasoning variants, model scaling, evaluation, and carbon-emissions tracking across Llama-3.1-8B, Mistral-7B, Qwen3-14B, Gemma3-12B, and Gemma3-27B.
 
 ---
 
@@ -33,7 +33,8 @@ This work builds on:
 
 ## Dataset
 
-The processed dev/train/val splits used in this project are released on the Hugging Face Hub:
+Available in the data folder, with separate non-augmented, and augmented variants in the jsonl formats.
+<!--The processed dev/train/val splits used in this project are released on the Hugging Face Hub:
 
 **[nlpscu/TutorMind on Hugging Face](https://huggingface.co/datasets/nlpscu/TutorMind)** — `https://huggingface.co/datasets/nlpscu/TutorMind`
 
@@ -44,7 +45,7 @@ ds = load_dataset("nlpscu/TutorMind")
 
 The raw labeled file (`data/augmented_full_devset.json`) and the per-task chat-format `.jsonl` splits under `data/train/` and `data/val/` are the local materializations used by the training scripts.
 
----
+----->
 
 ## Headline Results
 
