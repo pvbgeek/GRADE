@@ -66,8 +66,6 @@ Key takeaways (by strict F1):
 - **Augmentation helps the harder labels.** Qwen3-Gen / Qwen3-Gen+Verify training data wins ML on every model, PG on Qwen3 and Gemma3-27B, and MT on Mistral-7B, LLaMA-3.1-8B, and Qwen3-14B. MI and Act are usually best with the original splits only.
 - **Qwen3 "thinking" is task-dependent** — think-on wins MI, ML, and Act; think-off wins PG and MT.
 
-Carbon-cost-adjusted rankings live in [master_metrics_with_carbon.csv](master_metrics_with_carbon.csv) — see the *Carbon tracking* notes below.
-
 ---
 
 ## Repository Structure
